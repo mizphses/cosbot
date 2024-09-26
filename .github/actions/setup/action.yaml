@@ -32,5 +32,5 @@ runs:
       shell: bash
 
     - name: Generate files
-      run: pnpm gen
+      run: pnpm gen:client
       shell: bash
