@@ -4,6 +4,7 @@ import { Context, Hono, Next } from 'hono'
 import { jwt } from 'hono/jwt'
 import { chatAnthropic } from '../lib/anthropic'
 import { TextBlock } from '@anthropic-ai/sdk/resources/messages.mjs'
+import { createId } from '@paralleldrive/cuid2'
 
 const projects = new Hono<{ Bindings: CloudflareBindings }>()
 
@@ -75,6 +76,7 @@ type ProductTypeReq = {
 
 projects.post('/:id/new', async (c) => {
   const { product_type } = await c.req.json<ProductTypeReq>()
+  const id = c.req.param('id')
   const data = (await chatAnthropic(
     c.env.ANTHROPIC_API_KEY,
     [
@@ -91,7 +93,44 @@ projects.post('/:id/new', async (c) => {
   )) as { content: TextBlock[] }
 
   console.log(data.content)
-  return c.html(`<html>\n  <head>\n    <title>${data.content[0].text}`)
+  const caseId = createId()
+  const content = `<html>\n  <head>\n    <title>${data.content[0].text}`
+  c.env.testcases.put(caseId, content)
+
+  const adapter = new PrismaD1(c.env.DB)
+  const prisma = new PrismaClient({ adapter })
+  prisma.task.create({
+    data: {
+      id: caseId,
+      projectId: id,
+      data: content,
+    },
+  })
+  return c.json({
+    projectId: id,
+    htmlId: caseId,
+  })
+})
+
+projects.get('/cases/:caseId', async (c) => {
+  const id = c.req.param('caseId')
+  const adapter = new PrismaD1(c.env.DB)
+  const prisma = new PrismaClient({ adapter })
+
+  const tasks = await prisma.task.findMany({
+    where: {
+      id,
+    },
+  })
+
+  return c.json(tasks)
+})
+
+projects.get('/cases/:caseId/view', async (c) => {
+  const id = c.req.param('caseId')
+  const html = (await c.env.testcases.get(id)) || ''
+
+  return c.html(html)
 })
 
 export default projects
