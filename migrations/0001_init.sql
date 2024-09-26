@@ -25,6 +25,7 @@ CREATE TABLE "Task" (
 -- CreateTable
 CREATE TABLE "Evaluation" (
     "id" TEXT NOT NULL PRIMARY KEY,
+    "score" INTEGER NOT NULL,
     "data" TEXT NOT NULL,
     "taskId" TEXT NOT NULL,
     CONSTRAINT "Evaluation_taskId_fkey" FOREIGN KEY ("taskId") REFERENCES "Task" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
