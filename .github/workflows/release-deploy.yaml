@@ -101,4 +101,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: d1 migrations apply CHUO_IDS_COS
+          command: d1 migrations apply --remote CHUO_IDS_COS
