@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Accounts {
+  id       String     @id @default(uuid())
+  email    String     @unique
+  password String
+  name     String
+  role     String
+  projects Projects[]
+}
+
+model Projects {
+  id          String     @id @default(uuid())
+  name        String
+  description String?
+  tasks       Task[]
+  accounts    Accounts[]
+}
+
+model Task {
+  id          String       @id @default(cuid())
+  data        String
+  projectId   String
+  evaluations Evaluation[]
+  project     Projects     @relation(fields: [projectId], references: [id])
+}
+
+model Evaluation {
+  id     String @id @default(cuid())
+  score  Int
+  data   String
+  taskId String
+  task   Task   @relation(fields: [taskId], references: [id])
+}

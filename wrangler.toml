@@ -1,0 +1,13 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "cos"
+main = "src/index.ts"
+compatibility_date = "2024-09-24"
+
+[[d1_databases]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "CHUO_IDS_COS"
+database_id = "0903c38e-ec9a-417d-b54a-78704a8cb3a6"
+
+[[kv_namespaces]]
+binding = "testcases"
+id = "5b7ab2c7f0cf48b7842feb8001451d2f"

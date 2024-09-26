@@ -1,0 +1,36 @@
+name: 'Setup'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Enable corepack
+      shell: bash
+      run: corepack enable
+
+    - name: Install Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: 'package.json'
+        cache: pnpm
+
+    - name: Get pnpm store directory
+      id: pnpm-cache
+      shell: bash
+      run: |
+        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v4
+      name: Setup pnpm cache
+      with:
+        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+        key: ${{ runner.os }}-pnpm-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-cache-
+
+    - name: Install Dependencies
+      run: pnpm install --frozen-lockfile
+      shell: bash
+
+    - name: Generate files
+      run: pnpm gen:client
+      shell: bash

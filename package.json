@@ -1,0 +1,47 @@
+{
+  "name": "cos",
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "start": "wrangler dev",
+    "test": "vitest",
+    "gen:cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "format": "run-p format:biome format:prisma",
+    "format:biome": "biome format --write src",
+    "format:prisma": "prisma format",
+    "format:check": "biome format src",
+    "lint": "biome lint --write src",
+    "lint:check": "biome lint src",
+    "migration:create": "wrangler d1 migrations create CHUO_IDS_COS",
+    "migration:write-init": "prisma migrate diff --script --from-empty --to-schema-datamodel ./prisma/schema.prisma --output",
+    "migration:write": "prisma migrate diff --script --from-local-d1 --to-schema-datamodel ./prisma/schema.prisma --output",
+    "migrate:dev": "wrangler d1 migrations apply CHUO_IDS_COS --local",
+    "migrate:remote": "wrangler d1 migrations apply CHUO_IDS_COS --remote",
+    "gen": "run-p gen:*",
+    "gen:client": "prisma generate",
+    "seed:dev": "node ./prisma/seed.js",
+    "type-check": "tsc --noEmit",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.3",
+    "@prisma/client": "^5.20.0",
+    "hono": "^4.6.3",
+    "jose": "^5.9.3",
+    "typescript": "^5.6.2"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240924.0",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@prisma/adapter-d1": "^5.20.0",
+    "biome": "^0.3.3",
+    "husky": "^9.1.6",
+    "js-sha3": "^0.9.3",
+    "npm-run-all2": "^6.2.3",
+    "prettier": "^3.3.3",
+    "prisma": "^5.20.0",
+    "typescript-eslint": "^8.7.0",
+    "wrangler": "^3.57.2"
+  },
+  "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c"
+}
