@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="実験参加にかかる同意書" />
+    <title>実験参加同意書</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+      body {
+        font-family: 'Noto Sans', 'Noto Sans JP', sans-serif;
+        max-width: 1200px;
+        margin: 10px auto;
+        margin-bottom: 100px;
+        padding: 0 1rem;
+        word-wrap: break-word;
+      }
+
+      .taskIntro {
+        margin: 10px 0;
+        padding: 10px 20px;
+        border-radius: 10px;
+        background-color: #baf3ff;
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 2rem;
+      }
+
+      .nextButton {
+        border: none;
+        text-decoration: none;
+        color: #fff;
+        background-color: #000;
+        padding: 5px 20px;
+        border-radius: 5px;
+        font-weight: 700;
+      }
+
+      .nextButton:hover {
+        background-color: #333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <p>中央大学iDSプログラム飯尾ゼミ</p>
+      <button onClick="window.print()">同意書を印刷</button>
+    </div>
+    <hr />
+    <div class="taskIntro">
+      <h2>この実験でのタスクの説明</h2>
+      <img src="./task.png" width="100%" />
+    </div>
+    <h1>実験参加同意書</h1>
+    <h2>研究の目的</h2>
+    <p>
+      この研究は、AIを活用したCTAクリック率最適化の研究を行うことで人間の行動のAIによる分析の最適化が可能かどうか解明することを目的としています。
+      実験開始前にこの説明書をお読みいただき、ご協力いただける場合には、以下のチェックボックスにチェックを入れ、次のページに進んでください。
+    </p>
+    <h2>実験方法</h2>
+    <p>画面上にWebサイトが表示されます。このウェブサイトをお読みになり、購入の意思が決まった時点でクリックしてください。</p>
+    <h2>取得する情報</h2>
+    <p>
+      操作に関する情報(カーソル移動、クリック、滞在時間等)およびユーザーの端末情報（端末の種類、OS、ブラウザ等）、IPアドレス等通信管理に必要な事項、その他、Google
+      Analyticsが必要とする事項
+    </p>
+    <h2>情報の提供先</h2>
+    <p>
+      本研究においてはアクセス解析やAIシステム利用のため、そのプロバイダーに情報を提供します。提供先プロバイダはSOC2などの国際的セキュリティ認証を取得しており、安全にあなたのデータを利用します。詳細は、下に記すサードパーティーのプライバシーポリシーをご参照ください。
+    </p>
+    <ul>
+      <li>
+        Anthropic (Claude) <br />
+        <a href="https://privacy.anthropic.com/en/collections/10663361-commercial-customers">プライバシーポリシー</a>
+      </li>
+      <li>
+        Google (Google Analytics)<br />
+        <a href="https://marketingplatform.google.com/about/analytics/terms/jp/">利用規約</a><br />
+        <a href="https://policies.google.com/technologies/ads?hl=ja">Googleのポリシーと規約</a>
+      </li>
+      <li>Cloudflare <br /><a href="https://www.cloudflare.com/ja-jp/privacypolicy/">プライバシーポリシー</a></li>
+    </ul>
+    <h2>実験対象者の権利および利益・不利益について</h2>
+    <p>
+      この研究に参加するか否かは自由意志で決定してください。また、一度同意した後でいつでも同意を取り消すことができ、それによる不利益はありません。匿名化番号を破棄するとともに、それまでに得られたデータや解析結果を破棄し、それ以降の研究には一切使用いたしません。但し、取り消し要求された時点で公表済みの解析結果がある場合は、このデータを破棄できませんのでご承知おきください。
+    </p>
+    <p>
+      本研究の参加による費用の負担はありません。参加されなくても不利益を受けることはありません。在学者の場合、この実験の参加・不参加・結果等あらゆる事項によって成績評価が影響を受けることはありません。
+    </p>
+    <p>本研究の参加において、謝礼はありません。</p>
+    <h2>知的財産権</h2>
+    <p>
+      研究の進展によっては、特許などの知的財産権が生ずる可能性がありますが、知的財産権の帰属は、研究者または中央大学、あるいは中央大学の共同研究者と協議のうえ決定され、データ提供者に帰属することはありません。
+    </p>
+    <h2>研究実施者</h2>
+    <h3>実験者</h3>
+    <p>中央大学経済学部経済情報システム学科</p>
+    <p>4年　尾川史典（21B2125025E / a21.4btf@g.chuo-u.ac.jp）</p>
+    <h3>責任者</h3>
+    <p>中央大学国際情報学部</p>
+    <p>教授　飯尾淳</p>
+    <hr />
+    <div id="app">
+      <input type="checkbox" id="agree" v-model="agree" />
+      <label for="agree">同意する</label>
+      <div v-if="agree" style="margin-top: 30px">
+        <a href="/projects/cases/:caseId/view" class="nextButton">次のページへ</a>
+      </div>
+    </div>
+    <script>
+      const { createApp, ref } = Vue
+
+      createApp({
+        setup() {
+          const agree = ref(false)
+          return { agree }
+        },
+      }).mount('#app')
+    </script>
+  </body>
+</html>
