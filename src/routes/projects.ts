@@ -8,15 +8,15 @@ import { createId } from '@paralleldrive/cuid2'
 
 const projects = new Hono<{ Bindings: CloudflareBindings }>()
 
-projects.use(
-  '/*',
-  async (
-    c: Context<{
-      Bindings: CloudflareBindings
-    }>,
-    next: Next,
-  ) => jwt({ secret: c.env.TOKEN_KEY })(c, next),
-)
+// projects.use(
+//   '/*',
+//   async (
+//     c: Context<{
+//       Bindings: CloudflareBindings
+//     }>,
+//     next: Next,
+//   ) => jwt({ secret: c.env.TOKEN_KEY })(c, next),
+// )
 
 projects.get('/', async (c) => {
   return c.json({
