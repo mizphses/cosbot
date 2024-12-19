@@ -135,6 +135,9 @@ projects.get('/cases/:id/view', async (c) => {
     },
   })
 
+  console.log(id)
+  console.log(tasks)
+
   return c.html(tasks?.data || 'html')
 })
 
