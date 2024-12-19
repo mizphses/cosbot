@@ -126,7 +126,7 @@ projects.get('/cases/:caseId', async (c) => {
 })
 
 projects.get('/cases/:caseId/view', async (c) => {
-  const id = c.req.param('caseId')
+  const id = await c.req.param('caseId')
   const adapter = new PrismaD1(c.env.DB)
   const prisma = new PrismaClient({ adapter })
   const tasks = await prisma.task.findFirst({
