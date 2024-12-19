@@ -27,16 +27,16 @@ model Projects {
   id          String     @id @default(uuid())
   name        String
   description String?
-  tasks       Task[]
+  // tasks       Task[]
   accounts    Accounts[]
 }
 
 model Task {
   id          String       @id @default(cuid())
   data        String
-  projectId   String
+  // projectId   String
   evaluations Evaluation[]
-  project     Projects     @relation(fields: [projectId], references: [id])
+  // project     Projects     @relation(fields: [projectId], references: [id])
 }
 
 model Evaluation {
