@@ -77,6 +77,9 @@ type ProductTypeReq = {
 projects.post('/:id/new', async (c) => {
   const { product_type }: ProductTypeReq = await c.req.json()
   const id = c.req.param('id')
+  const adapter = new PrismaD1(c.env.DB)
+  const prisma = new PrismaClient({ adapter })
+
   const data = (await chatAnthropic(
     c.env.ANTHROPIC_API_KEY,
     [
@@ -96,14 +99,6 @@ projects.post('/:id/new', async (c) => {
   console.log(data.content)
   const caseId = createId()
   const content = `<html>\n  <head>\n    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" /><script async src="https://www.googletagmanager.com/gtag/js?id=G-ER932EQZE9"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag("js", new Date());\n\n  gtag("config", "G-ER932EQZE9");\n</script>\n    <title>${data.content[0].text}`
-  try {
-    c.env.COS_CASE.put(`${caseId}`, `${content}`)
-  } catch (e) {
-    console.error(e)
-  }
-
-  const adapter = new PrismaD1(c.env.DB)
-  const prisma = new PrismaClient({ adapter })
   prisma.task.create({
     data: {
       id: caseId,
@@ -134,8 +129,15 @@ projects.get('/cases/:caseId', async (c) => {
 projects.get('/cases/:caseId/view', async (c) => {
   const id = c.req.param('caseId')
   const html = (await c.env.COS_CASE.get(id)) || ''
+  const adapter = new PrismaD1(c.env.DB)
+  const prisma = new PrismaClient({ adapter })
+  const tasks = await prisma.task.findMany({
+    where: {
+      id,
+    },
+  })
 
-  return c.html(html)
+  return c.html(tasks)
 })
 
 export default projects
