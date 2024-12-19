@@ -102,7 +102,6 @@ projects.post('/:id/new', async (c) => {
   prisma.task.create({
     data: {
       id: caseId,
-      projectId: id,
       data: content,
     },
   })
