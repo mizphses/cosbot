@@ -10,7 +10,7 @@ export async function chatAnthropic(key: string, messages: MessageParam[], syste
     max_tokens: 8192,
     messages: messages,
     system: system,
-    model: 'claude-3-5-sonnet-20240620',
+    model: 'claude-3-5-sonnet-20241022',
   })
 
   return message
