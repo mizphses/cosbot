@@ -26,12 +26,12 @@
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.3",
     "@prisma/client": "^5.22.0",
-    "hono": "^4.6.13",
+    "hono": "^4.6.14",
     "jose": "^5.9.6",
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20241205.0",
+    "@cloudflare/workers-types": "^4.20241218.0",
     "@paralleldrive/cuid2": "^2.2.2",
     "@prisma/adapter-d1": "^5.22.0",
     "biome": "^0.3.3",
@@ -40,8 +40,8 @@
     "npm-run-all2": "^6.2.6",
     "prettier": "^3.4.2",
     "prisma": "^5.22.0",
-    "typescript-eslint": "^8.18.0",
-    "wrangler": "^3.95.0"
+    "typescript-eslint": "^8.18.1",
+    "wrangler": "^3.96.0"
   },
   "packageManager": "pnpm@9.10.0+sha512.73a29afa36a0d092ece5271de5177ecbf8318d454ecd701343131b8ebc0c1a91c487da46ab77c8e596d6acf1461e3594ced4becedf8921b074fbd8653ed7051c",
   "volta": {
