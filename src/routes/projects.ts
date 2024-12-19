@@ -99,7 +99,7 @@ projects.post('/:id/new', async (c) => {
   console.log(data.content)
   const caseId = createId()
   const content = `<html>\n  <head>\n    <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" /><script async src="https://www.googletagmanager.com/gtag/js?id=G-ER932EQZE9"></script>\n<script>\n  window.dataLayer = window.dataLayer || [];\n  function gtag(){dataLayer.push(arguments);}\n  gtag("js", new Date());\n\n  gtag("config", "G-ER932EQZE9");\n</script>\n    <title>${data.content[0].text}`
-  prisma.task.create({
+  await prisma.task.create({
     data: {
       id: caseId,
       data: content,
