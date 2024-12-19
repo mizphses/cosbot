@@ -33,7 +33,7 @@ projects.post('/new', async (c) => {
   const adapter = new PrismaD1(c.env.DB)
   const prisma = new PrismaClient({ adapter })
 
-  const { name, description } = await c.req.json<RequestType>()
+  const { name, description }: RequestType = await c.req.json()
   const project = await prisma.projects.create({
     data: {
       name,
@@ -75,7 +75,7 @@ type ProductTypeReq = {
 }
 
 projects.post('/:id/new', async (c) => {
-  const { product_type } = await c.req.json<ProductTypeReq>()
+  const { product_type }: ProductTypeReq = await c.req.json()
   const id = c.req.param('id')
   const data = (await chatAnthropic(
     c.env.ANTHROPIC_API_KEY,
