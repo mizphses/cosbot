@@ -126,19 +126,24 @@ projects.get('/cases/:caseId', async (c) => {
 })
 
 projects.get('/cases/:id/view', async (c) => {
-  const id = c.req.param('id')
-  const adapter = new PrismaD1(c.env.DB)
-  const prisma = new PrismaClient({ adapter })
-  const tasks = await prisma.task.findFirst({
-    where: {
-      id,
-    },
-  })
+  try {
+    const id = c.req.param('id')
+    console.log(id)
+    const adapter = new PrismaD1(c.env.DB)
+    const prisma = new PrismaClient({ adapter })
+    const tasks = await prisma.task.findFirst({
+      where: {
+        id,
+      },
+    })
 
-  console.log(id)
-  console.log(tasks)
+    console.log(tasks)
 
-  return c.html(tasks?.data || 'html')
+    return c.html(tasks?.data || 'html')
+  } catch (error) {
+    console.error('Error fetching task:', error)
+    return c.json({ error: 'Internal Server Error' }, 500)
+  }
 })
 
 export default projects
