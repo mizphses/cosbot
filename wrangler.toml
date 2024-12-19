@@ -11,8 +11,8 @@ database_name = "CHUO_IDS_COS"
 database_id = "0903c38e-ec9a-417d-b54a-78704a8cb3a6"
 
 [[kv_namespaces]]
-binding = "COS_TESTCASES"
-id = "5b7ab2c7f0cf48b7842feb8001451d2f"
+binding = "COS_CASE"
+id = "94586c23793b4086ba41f52a893e2cdf"
 
 [observability]
 enabled = true
