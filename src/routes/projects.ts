@@ -128,16 +128,15 @@ projects.get('/cases/:caseId', async (c) => {
 
 projects.get('/cases/:caseId/view', async (c) => {
   const id = c.req.param('caseId')
-  const html = (await c.env.COS_CASE.get(id)) || ''
   const adapter = new PrismaD1(c.env.DB)
   const prisma = new PrismaClient({ adapter })
-  const tasks = await prisma.task.findMany({
+  const tasks = await prisma.task.findFirst({
     where: {
       id,
     },
   })
 
-  return c.html(tasks)
+  return c.html(tasks?.data || 'html')
 })
 
 export default projects
