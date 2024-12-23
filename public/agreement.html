@@ -115,7 +115,7 @@
       <input type="checkbox" id="agree" v-model="agree" />
       <label for="agree">同意する</label>
       <div v-if="agree" style="margin-top: 30px">
-        <a href="/projects/cases/m0ht8izmpiht2k2iw74fof46/view?utm_source=cos&utm_campaign=agreement" class="nextButton">次のページへ</a>
+        <a class="nextButton" :href="link">次のページへ</a>
       </div>
     </div>
     <script>
@@ -124,7 +124,19 @@
       createApp({
         setup() {
           const agree = ref(false)
-          return { agree }
+
+          const link = ref('/projects/')
+
+          const pages = ['fgfwtj1cna4ynlgw3h89re2l', 'm0ht8izmpiht2k2iw74fof46', 'ev9oakk4jdcrdnoa5n6sppv1']
+
+          const nextPage = () => {
+            // pagesからランダムに選択
+            const next = pages[Math.floor(Math.random() * pages.length)]
+            link.value = `/projects/cases/${next}/view`
+          }
+
+          nextPage()
+          return { agree, link }
         },
       }).mount('#app')
     </script>
